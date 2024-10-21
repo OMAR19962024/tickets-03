@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket de Estacionamiento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            font-size: 12px;
+        }
+        .ticket {
+            width: 200px;
+            border: 1px solid #000;
+            padding: 10px;
+        }
+        .header {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .info {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket">
+        <div class="header">
+            ParKinG RenZo C9<br>
+            Ticket Entrada
+        </div>
+        <div class="info" id="ticketId"></div>
+        <div class="info" id="fechaHora"></div>
+        <div class="info" id="placa"></div>
+        <div class="info" id="carnet"></div>
+        <div class="info" id="tarifas"></div>
+        <div class="info" id="lugar"></div>
+        <div class="info" id="admin"></div>
+
+    </div>
+
+    <script>
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        document.getElementById('ticketId').textContent = 'ID: ' + getUrlParameter('id');
+        document.getElementById('fechaHora').textContent = 'Fecha/Hora: ' + getUrlParameter('fechaHora');
+        document.getElementById('placa').textContent = 'Placa: ' + getUrlParameter('placa');
+        document.getElementById('carnet').textContent = 'Carnet: ' + getUrlParameter('carnet');
+        document.getElementById('tarifas').textContent = 'Tarifas: Hora: Bs' + getUrlParameter('tarifaHora') + ' Fracción: Bs' + getUrlParameter('tarifaFraccion');
+        document.getElementById('lugar').textContent = 'Lugar: ' + getUrlParameter('lugar');
+        document.getElementById('admin').textContent = 'Admin: ' + getUrlParameter('admin');
+
+        // Imprimir automáticamente
+        window.onload = function() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
